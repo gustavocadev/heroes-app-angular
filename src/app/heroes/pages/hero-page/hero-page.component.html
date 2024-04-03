@@ -1,0 +1,56 @@
+@if (hero) {
+<div class="grid p-2">
+  <mat-card class="col-12 sm:col-6">
+    <mat-card-header>
+      <mat-card-title>
+        <h1>{{ hero.alter_ego }}</h1>
+      </mat-card-title>
+
+      <mat-card-subtitle>
+        <h2>{{ hero.superhero }}</h2>
+      </mat-card-subtitle>
+    </mat-card-header>
+
+    <figure>
+      <img [src]="hero | heroImage" [alt]="hero.superhero" mat-card-image />
+    </figure>
+  </mat-card>
+
+  <mat-card class="col-12 sm:col-6">
+    <mat-card-header>
+      <mat-card-title>
+        <h1>Informacion del heroe</h1>
+      </mat-card-title>
+
+      <mat-card-subtitle>
+        <h2>{{ hero.superhero }}</h2>
+      </mat-card-subtitle>
+    </mat-card-header>
+
+    <mat-card-content>
+      <mat-list>
+        <mat-list-item>
+          <strong>Alter Ego: </strong> {{ hero.alter_ego }}
+        </mat-list-item>
+        <mat-list-item>
+          <strong>Editorial: </strong> {{ hero.publisher }}
+        </mat-list-item>
+        <mat-list-item>
+          <strong>Primera aparicion: </strong> {{ hero.first_appearance }}
+        </mat-list-item>
+        <mat-list-item>
+          <strong>Personajes: </strong> {{ hero.characters }}
+        </mat-list-item>
+      </mat-list>
+      <a mat-button color="warn" routerLink="/heroes/list">Regresar</a>
+    </mat-card-content>
+  </mat-card>
+</div>
+} @else {
+<mat-grid-list cols="1">
+  <mat-grid-tile>
+    <mat-spinner />
+  </mat-grid-tile>
+</mat-grid-list>
+
+}

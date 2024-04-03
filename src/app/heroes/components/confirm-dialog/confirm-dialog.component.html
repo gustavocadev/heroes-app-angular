@@ -1,0 +1,13 @@
+<h2 mat-dialog-title>Estas seguro?</h2>
+<mat-dialog-content>
+  <p>
+    Este proceso no se puede deshacer, esta seguro de que desea eliminar a
+    {{ data.superhero }}
+  </p>
+</mat-dialog-content>
+<mat-dialog-actions class="justify-content-around">
+  <button mat-button (click)="onNoClick()">No Thanks</button>
+  <button mat-button (click)="onConfirm()" cdkFocusInitial color="primary">
+    Ok
+  </button>
+</mat-dialog-actions>

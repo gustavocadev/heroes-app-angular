@@ -1,0 +1,81 @@
+<h1>
+  {{ currentHero.id ? "Editar" : "Crear" }} Heroe
+  <small>{{ currentHero.superhero }} </small>
+</h1>
+
+<mat-divider class="mb-20"></mat-divider>
+
+<div class="grid">
+  <div class="col-12 sm:col-6">
+    <mat-card>
+      <mat-card-content>
+        <form class="grid" [formGroup]="heroForm" (ngSubmit)="onSubmit()">
+          <mat-form-field class="col-12 sm:col-6">
+            <mat-label>Super Heroe</mat-label>
+            <input matInput type="text" required formControlName="superhero" />
+          </mat-form-field>
+
+          <!-- {{ heroForm.get("superhero")?.value | json }} -->
+
+          <mat-form-field class="col-12 sm:col-6">
+            <mat-label>Alter Ego</mat-label>
+            <input matInput type="text" required formControlName="alter_ego" />
+          </mat-form-field>
+
+          <mat-form-field class="col-12">
+            <mat-label>Primera aparicion</mat-label>
+            <input
+              matInput
+              type="text"
+              required
+              formControlName="first_appearance"
+            />
+          </mat-form-field>
+
+          <mat-form-field class="col-12">
+            <mat-label>Personajes</mat-label>
+            <input matInput type="text" required formControlName="characters" />
+          </mat-form-field>
+
+          <mat-form-field class="col-12">
+            <mat-label>Creador</mat-label>
+            <mat-select required formControlName="publisher">
+              @for (publisher of publishers; track publisher.id) {
+              <mat-option [value]="publisher.id">{{
+                publisher.desc
+              }}</mat-option>
+              }
+            </mat-select>
+          </mat-form-field>
+
+          <mat-form-field class="col-12">
+            <mat-label>Alter Image</mat-label>
+            <input matInput type="text" required formControlName="alt_img" />
+          </mat-form-field>
+        </form>
+        <div class="flex flex-col justify-content-between">
+          @if (currentHero.id) {
+
+          <button mat-raised-button color="warn" (click)="onDeleteHero()">
+            >Borrar
+          </button>
+          }
+
+          <button mat-raised-button color="primary" (click)="onSubmit()">
+            Guardar
+          </button>
+        </div>
+      </mat-card-content>
+    </mat-card>
+  </div>
+
+  <div class="col-12 sm:col-6">
+    <mat-card>
+      <img [src]="currentHero | heroImage" [alt]="'Imagen del heroe'" />
+    </mat-card>
+  </div>
+</div>
+
+<pre>
+  {{ currentHero | json }}
+</pre>
